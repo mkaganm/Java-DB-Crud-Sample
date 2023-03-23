@@ -2,6 +2,7 @@ package dbconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class DBConn {
@@ -15,14 +16,17 @@ public class DBConn {
         try {
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         } catch (Exception e) {
-            System.err.println(e.getStackTrace());
-            System.err.println(e.getMessage());
-            System.err.println(e.getCause());
+            throw new RuntimeException(e.getMessage());
         }
      return conn;
     }
 
     public static  void closeDB(){
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
     }
 }
