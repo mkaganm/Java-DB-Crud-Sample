@@ -146,4 +146,21 @@ public class DBUsers extends DBConn {
         }
 
     }
+
+    public void deleteUser(int userId) {
+
+        String query = "DELETE FROM users WHERE user_id = ?";
+
+        conn = connectDB();
+
+        try {
+
+            preSt = conn.prepareStatement(query);
+            preSt.setInt(1, userId);
+            preSt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }
