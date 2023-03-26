@@ -1,12 +1,9 @@
-FROM maven:latest
+FROM openjdk:latest
 
-COPY Docker /Users/kagan.meric/IdeaProjects/myRepos/Java-Crud-Sample
+EXPOSE 8888
 
-RUN apt-get update -y && apt-get install -y libmariadb-dev
-RUN docker-php-ext-install mysqli
+ARG JAR_FILE=target/Java-Crud-Sample-1.0-SNAPSHOT.jar
 
-RUN mvn -f /Users/kagan.meric/IdeaProjects/myRepos/Java-Crud-Sample/pom.xml clean package
+ADD ${JAR_FILE} application.jar
 
-EXPOSE 8080
-
-BASH ["java", "-jar", "/Users/kagan.meric/IdeaProjects/myRepos/Java-Crud-Sample/target/Java-Crud-Sample-1.0-SNAPSHOT.jar"]
+ENTRYPOINT["java", "-jar", "/application.jar"]
