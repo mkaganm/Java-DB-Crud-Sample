@@ -1,4 +1,4 @@
-FROM maven:latest
+FROM openjdk
 
 EXPOSE 8888
 
