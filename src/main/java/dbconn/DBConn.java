@@ -31,7 +31,7 @@ public class DBConn {
     public static Connection connectDB() {
         try {
             conn = DriverManager.getConnection(dbConn.getDbUrl(), dbConn.getDbUser(), dbConn.getDbPassword());
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
         return conn;
