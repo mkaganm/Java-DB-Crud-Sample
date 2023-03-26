@@ -2,6 +2,8 @@ package models;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class User {
 
@@ -13,9 +15,11 @@ public class User {
 
     String email;
 
-    String name;
+    String phone;
+
+    String firstname;
 
     String lastName;
 
-    String phoneNumber;
+    Timestamp updateOn;
 }
