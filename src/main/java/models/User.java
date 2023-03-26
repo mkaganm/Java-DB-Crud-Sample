@@ -1,5 +1,6 @@
 package models;
 
+import com.github.javafaker.Faker;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -22,4 +23,17 @@ public class User {
     String lastName;
 
     Timestamp updateOn;
+
+    public void setFakeUser(){
+        Faker faker = new Faker();
+
+        this.username = faker.name().username();
+        this.password = faker.internet().password();
+        this.email = faker.internet().emailAddress();
+        this.phone = faker.phoneNumber().phoneNumber();
+        this.firstname = faker.name().firstName();
+        this.lastName = faker.name().lastName();
+    }
 }
+
+
