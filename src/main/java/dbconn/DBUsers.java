@@ -2,24 +2,22 @@ package dbconn;
 
 import models.User;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBUsers extends DBConn{
+public class DBUsers extends DBConn {
 
     User user;
     List<User> userList;
 
-    public DBUsers(){
+    public DBUsers() {
         user = new User();
         userList = new ArrayList<>();
     }
 
-    public List<User> getUserList(){
+    public List<User> getUserList() {
 
         String query = "SELECT * FROM users";
 
@@ -48,7 +46,7 @@ public class DBUsers extends DBConn{
 
             st.close();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
 
@@ -67,21 +65,27 @@ public class DBUsers extends DBConn{
 
             preSt = conn.prepareStatement(query);
 
-            preSt.setString(1,user1.getUsername());
-            preSt.setString(2,user1.getPassword());
+            preSt.setString(1, user1.getUsername());
+            preSt.setString(2, user1.getPassword());
             preSt.setString(3, user1.getEmail());
-            preSt.setString(4,user1.getPhone());
-            preSt.setString(5,user1.getFirstname());
-            preSt.setString(6,user1.getLastName());
+            preSt.setString(4, user1.getPhone());
+            preSt.setString(5, user1.getFirstname());
+            preSt.setString(6, user1.getLastName());
 
             preSt.executeUpdate();
 
             preSt.close();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
 
         closeDB();
+    }
+
+    public void updateUser() {
+
+        String query = "";
+
     }
 }
