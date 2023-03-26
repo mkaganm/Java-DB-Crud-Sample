@@ -1,6 +1,5 @@
 package org.example;
 
-import com.github.javafaker.Faker;
 import dbconn.DBUsers;
 import models.User;
 
