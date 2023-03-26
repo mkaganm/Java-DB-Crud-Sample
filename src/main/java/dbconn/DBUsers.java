@@ -118,7 +118,26 @@ public class DBUsers extends DBConn {
         closeDB();
     }
 
-    public void updateUser() {
+    public void updateUser(int userId, User user1) {
+
+        String query = "UPDATE users SET username=?,password=?,email=?,phone=?,firstname=?,lastname=? WHERE user_id=?";
+
+        conn = connectDB();
+
+        try {
+
+            preSt = conn.prepareStatement(query);
+
+            preSt.setString(1, user1.getUsername());
+            preSt.setString(2, user1.getPassword());
+            preSt.setString(3, user1.getEmail());
+            preSt.setString(4, user1.getPhone());
+            preSt.setString(5, user1.getFirstname());
+            preSt.setString(6, user1.getLastName());
+
+            preSt.setInt(7, userId); // WHERE user_id=?
+
+            preSt.executeUpdate();
 
         String query = "";
 
