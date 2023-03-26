@@ -11,9 +11,6 @@ import java.util.List;
 
 public class DBUsers extends DBConn{
 
-    Connection conn;
-    Statement st;
-
     User user;
     List<User> userList;
 
@@ -49,12 +46,42 @@ public class DBUsers extends DBConn{
                 userList.add(user);
             }
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            st.close();
+
+        }catch (SQLException e){
+            throw new RuntimeException(e.getMessage());
         }
 
         closeDB();
 
         return userList;
+    }
+
+    public void addUserToDB(User user1) {
+
+        String query = "INSERT INTO users (username,password,email,phone,firstname,lastname) VALUES(?,?,?,?,?,?)";
+
+        conn = connectDB();
+
+        try {
+
+            preSt = conn.prepareStatement(query);
+
+            preSt.setString(1,user1.getUsername());
+            preSt.setString(2,user1.getPassword());
+            preSt.setString(3, user1.getEmail());
+            preSt.setString(4,user1.getPhone());
+            preSt.setString(5,user1.getFirstname());
+            preSt.setString(6,user1.getLastName());
+
+            preSt.executeUpdate();
+
+            preSt.close();
+
+        } catch (SQLException e){
+            throw new RuntimeException(e.getMessage());
+        }
+
+        closeDB();
     }
 }
