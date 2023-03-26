@@ -55,6 +55,41 @@ public class DBUsers extends DBConn {
         return userList;
     }
 
+    public User getUserWithId(int userId) {
+
+        String query = "SELECT * FROM users WHERE user_id = " + userId;
+
+        conn = connectDB();
+
+        try {
+
+            user = new User();
+
+            st = conn.createStatement();
+
+            ResultSet data = st.executeQuery(query);
+            data.next();
+
+            user.setUserId(data.getInt("user_id"));
+            user.setUsername(data.getString("username"));
+            user.setPassword(data.getString("password"));
+            user.setEmail(data.getString("email"));
+            user.setPhone(data.getString("phone"));
+            user.setFirstname(data.getString("firstname"));
+            user.setLastName(data.getString("lastname"));
+            user.setUpdateOn(data.getTimestamp("update_on"));
+
+            preSt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+        closeDB();
+
+        return user;
+    }
+
     public void addUserToDB(User user1) {
 
         String query = "INSERT INTO users (username,password,email,phone,firstname,lastname) VALUES(?,?,?,?,?,?)";
