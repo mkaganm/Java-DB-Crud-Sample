@@ -139,7 +139,11 @@ public class DBUsers extends DBConn {
 
             preSt.executeUpdate();
 
-        String query = "";
+            preSt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
     }
 }
