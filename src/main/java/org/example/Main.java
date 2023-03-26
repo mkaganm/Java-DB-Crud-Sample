@@ -17,5 +17,14 @@ public class Main {
         for (User user1 : dbu.getUserList()) {
             System.out.println(user1);
         }
+
+        user.setFakeUser();
+
+        System.out.println(dbu.getUserWithId(10));
+        dbu.updateUser(10, user);
+        System.out.println(dbu.getUserWithId(10));
+
+        dbu.deleteUser(35);
+
     }
 }

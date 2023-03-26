@@ -30,7 +30,7 @@ public class User {
         this.username = faker.name().username();
         this.password = faker.internet().password();
         this.email = faker.internet().emailAddress();
-        this.phone = faker.phoneNumber().phoneNumber();
+        this.phone = faker.phoneNumber().cellPhone();
         this.firstname = faker.name().firstName();
         this.lastName = faker.name().lastName();
     }
