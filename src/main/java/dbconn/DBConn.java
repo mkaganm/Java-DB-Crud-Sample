@@ -5,9 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.Data;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Data
 public class DBConn {
@@ -16,6 +14,10 @@ public class DBConn {
     private String dbUrl;
     private String dbUser;
     private String dbPassword;
+
+    protected static Connection conn;
+    protected Statement st;
+    protected PreparedStatement preSt;
 
     static {
         try {
@@ -26,9 +28,7 @@ public class DBConn {
         }
     }
 
-    static Connection conn;
-
-    public static Connection connectDB() {
+    protected static Connection connectDB() {
         try {
             conn = DriverManager.getConnection(dbConn.getDbUrl(), dbConn.getDbUser(), dbConn.getDbPassword());
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class DBConn {
         return conn;
     }
 
-    public static void closeDB() {
+    protected static void closeDB() {
         try {
             conn.close();
         } catch (SQLException e) {
