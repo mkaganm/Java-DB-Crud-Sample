@@ -24,7 +24,7 @@ public class User {
 
     Timestamp updateOn;
 
-    public void setFakeUser(){
+    public void setFakeUser() {
         Faker faker = new Faker();
 
         this.username = faker.name().username();
