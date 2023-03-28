@@ -144,6 +144,8 @@ public class DBUsers extends DBConn {
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
+        
+        closeDB();
 
     }
 
