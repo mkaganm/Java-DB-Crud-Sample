@@ -147,6 +147,8 @@ public class DBUsers extends DBConn {
         
         closeDB();
 
+        closeDB();
+
     }
 
     public void deleteUser(int userId) {
