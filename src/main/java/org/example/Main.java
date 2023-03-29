@@ -24,7 +24,7 @@ public class Main {
         dbu.updateUser(10, user);
         System.out.println(dbu.getUserWithId(10));
 
-        dbu.deleteUser(35);
+        dbu.deleteUser(37);
 
     }
 }

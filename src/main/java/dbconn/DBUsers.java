@@ -145,6 +145,8 @@ public class DBUsers extends DBConn {
             throw new RuntimeException(e.getMessage());
         }
 
+        closeDB();
+
     }
 
     public void deleteUser(int userId) {
