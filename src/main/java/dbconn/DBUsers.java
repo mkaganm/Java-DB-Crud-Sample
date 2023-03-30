@@ -56,31 +56,31 @@ public class DBUsers extends DBConn {
     }
 
     public User getUserWithId(int userId) {
-
-        String query = "SELECT * FROM users WHERE user_id = " + userId;
+        String query = "SELECT * FROM users WHERE user_id = ?";
 
         conn = connectDB();
 
         try {
-
             user = new User();
 
-            st = conn.createStatement();
+            preSt = conn.prepareStatement(query);
+            preSt.setInt(1, userId);
+            ResultSet data = preSt.executeQuery();
 
-            ResultSet data = st.executeQuery(query);
-            data.next();
-
-            user.setUserId(data.getInt("user_id"));
-            user.setUsername(data.getString("username"));
-            user.setPassword(data.getString("password"));
-            user.setEmail(data.getString("email"));
-            user.setPhone(data.getString("phone"));
-            user.setFirstname(data.getString("firstname"));
-            user.setLastName(data.getString("lastname"));
-            user.setUpdateOn(data.getTimestamp("update_on"));
+            if (data.next()) {
+                user.setUserId(data.getInt("user_id"));
+                user.setUsername(data.getString("username"));
+                user.setPassword(data.getString("password"));
+                user.setEmail(data.getString("email"));
+                user.setPhone(data.getString("phone"));
+                user.setFirstname(data.getString("firstname"));
+                user.setLastName(data.getString("lastname"));
+                user.setUpdateOn(data.getTimestamp("update_on"));
+            } else {
+                return null;
+            }
 
             preSt.close();
-
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -89,6 +89,7 @@ public class DBUsers extends DBConn {
 
         return user;
     }
+
 
     public void addUserToDB(User user1) {
 
@@ -163,8 +164,12 @@ public class DBUsers extends DBConn {
             preSt.setInt(1, userId);
             preSt.executeUpdate();
 
+            preSt.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
+
+        closeDB();
     }
 }
