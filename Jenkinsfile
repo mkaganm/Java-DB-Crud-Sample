@@ -1,29 +1,16 @@
 pipeline {
-  
-  agent any
-  
-  stages {
-    
-    stage("Build") {
-    
-      steps {
-        
-        echo "Build"
-        sh "javac Main.java"
-      
-      }
-      
-    }
-    
-    stage("Run") {
-      
-      steps {
-        
-        echo "Run"
-        sh "java Main"
-      
-      }
-  
-  }
+    agent any
 
+    stages {
+        stage('Build') {
+            steps {
+                sh 'javac Main.java'
+            }
+        }
+        stage('Run') {
+            steps {
+                sh 'java Main'
+            }
+        }
+    }
 }
