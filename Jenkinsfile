@@ -5,14 +5,24 @@ pipeline {
   stages {
     
     stage("Build") {
-      
+    
       steps {
         
-        echo "HelloWorld"
+        echo "Build"
+        sh "javac Main.java"
       
       }
       
     }
+    
+    stage("Run") {
+      
+      steps {
+        
+        echo "Run"
+        sh "java Main"
+      
+      }
   
   }
 
