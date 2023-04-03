@@ -2,9 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Compile') {
             steps {
-                sh 'javac *
+                sh 'mvn compile'
+            }
+        }
+        stage('Package'){
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Install') {
+            steps {
+                sh 'mvn install'
+            }
+        }
+        stage('Mvn Test'){
+            steps {
+                sh 'mvn test'
             }
         }
         stage('Run') {
