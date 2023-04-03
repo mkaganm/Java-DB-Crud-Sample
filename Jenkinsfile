@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'javac src/*.java'
+                sh 'javac *
             }
         }
         stage('Run') {
