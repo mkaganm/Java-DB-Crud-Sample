@@ -26,5 +26,7 @@ public class Main {
 
         dbu.deleteUser(37);
 
+        System.out.println("TEST TEST");
+
     }
 }
