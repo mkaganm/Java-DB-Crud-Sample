@@ -22,9 +22,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Run') {
+        stage('Execute') {
             steps {
-                sh 'java src/main/java/org/example/Main'
+                sh 'java -jar target/Java-Crud-Sample-1.0-SNAPSHOT.jar'
             }
         }
     }
